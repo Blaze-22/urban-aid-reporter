@@ -16,34 +16,61 @@ export type Database = {
     Tables: {
       issues: {
         Row: {
-          date_reported: string | null
+          address: string | null
+          category: string | null
+          created_at: string | null
           description: string | null
           id: number
+          image_urls: string[] | null
+          latitude: number | null
           location: string | null
+          longitude: number | null
           priority: string | null
           status: string | null
           title: string | null
           tracking_id: string | null
+          updated_at: string | null
+          upvotes: number | null
+          user_id: string | null
+          video_urls: string[] | null
         }
         Insert: {
-          date_reported?: string | null
+          address?: string | null
+          category?: string | null
+          created_at?: string | null
           description?: string | null
           id?: number
+          image_urls?: string[] | null
+          latitude?: number | null
           location?: string | null
+          longitude?: number | null
           priority?: string | null
           status?: string | null
           title?: string | null
           tracking_id?: string | null
+          updated_at?: string | null
+          upvotes?: number | null
+          user_id?: string | null
+          video_urls?: string[] | null
         }
         Update: {
-          date_reported?: string | null
+          address?: string | null
+          category?: string | null
+          created_at?: string | null
           description?: string | null
           id?: number
+          image_urls?: string[] | null
+          latitude?: number | null
           location?: string | null
+          longitude?: number | null
           priority?: string | null
           status?: string | null
           title?: string | null
           tracking_id?: string | null
+          updated_at?: string | null
+          upvotes?: number | null
+          user_id?: string | null
+          video_urls?: string[] | null
         }
         Relationships: []
       }
@@ -55,7 +82,18 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      issue_category:
+        | "Road & Transportation"
+        | "Water & Sanitation"
+        | "Public Safety"
+        | "Parks & Recreation"
+        | "Utilities"
+        | "Waste Management"
+        | "Street Lighting"
+        | "Public Buildings"
+        | "Other"
+      issue_priority: "Low" | "Medium" | "High" | "Critical"
+      issue_status: "Pending" | "In Progress" | "Resolved" | "Rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -182,6 +220,20 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      issue_category: [
+        "Road & Transportation",
+        "Water & Sanitation",
+        "Public Safety",
+        "Parks & Recreation",
+        "Utilities",
+        "Waste Management",
+        "Street Lighting",
+        "Public Buildings",
+        "Other",
+      ],
+      issue_priority: ["Low", "Medium", "High", "Critical"],
+      issue_status: ["Pending", "In Progress", "Resolved", "Rejected"],
+    },
   },
 } as const
