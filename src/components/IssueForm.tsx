@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { MapView } from './MapView';
+// import { MapView } from './MapView';
 import { supabase } from '@/integrations/supabase/client';
 import { CATEGORIES, PRIORITIES } from '@/types/issue';
 import { useToast } from '@/hooks/use-toast';
@@ -258,13 +258,23 @@ export function IssueForm({ onSubmit }: IssueFormProps) {
           <div>
             <Label className="flex items-center gap-2">
               <MapPin className="h-4 w-4" />
-              Select Location on Map (Click to pin)
+              Select Location on Map
             </Label>
-            <MapView 
-              issues={[]} 
-              onLocationSelect={handleLocationSelect}
-              clickable={true}
-            />
+            <div className="w-full h-[300px] rounded-lg border bg-muted/20 flex items-center justify-center">
+              <div className="text-center">
+                <MapPin className="h-8 w-8 mx-auto mb-2 text-primary" />
+                <p className="text-sm text-muted-foreground">Map View (Coming Soon)</p>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="mt-2"
+                  onClick={() => handleLocationSelect(40.7128, -74.0060)}
+                >
+                  Use Default Location
+                </Button>
+              </div>
+            </div>
             {formData.address && (
               <p className="text-sm text-muted-foreground mt-2">
                 Selected: {formData.address}
