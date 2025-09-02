@@ -121,6 +121,9 @@ export function IssueForm({ onSubmit }: IssueFormProps) {
         return ['mp4', 'webm', 'ogg', 'mov'].includes(ext || '');
       });
       
+      // Get current user ID (null if not authenticated)
+      const { data: { user } } = await supabase.auth.getUser();
+      
       const { data, error } = await supabase
         .from('issues')
         .insert({
@@ -134,7 +137,8 @@ export function IssueForm({ onSubmit }: IssueFormProps) {
           longitude: formData.longitude,
           image_urls: imageUrls,
           video_urls: videoUrls,
-          status: 'Pending'
+          status: 'Pending',
+          user_id: user?.id || null
         })
         .select()
         .single();
