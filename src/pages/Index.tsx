@@ -5,7 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { IssueForm } from '@/components/IssueForm';
 import { IssueList } from '@/components/IssueList';
-// import { MapView } from '@/components/MapView';
+import { MapView } from '@/components/MapView';
+import { Header } from '@/components/Header';
 import { supabase } from '@/integrations/supabase/client';
 import { Issue } from '@/types/issue';
 import { AlertTriangle, MapPin, FileText, BarChart3, Users, Clock } from 'lucide-react';
@@ -56,6 +57,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -137,12 +139,7 @@ const Index = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="w-full h-[400px] rounded-lg border bg-muted/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 mx-auto mb-2 text-primary" />
-                    <p className="text-sm text-muted-foreground">Map View</p>
-                  </div>
-                </div>
+                <MapView issues={issues} />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Badge variant="outline">🔴 Critical</Badge>
                   <Badge variant="outline">🟠 High</Badge>
